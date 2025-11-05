@@ -1,3 +1,40 @@
+# what-ai-when
+
+Live site: https://pschweiss2.github.io/what-ai-when/
+
+Short notes
+- Run locally:
+
+```bash
+npm ci
+npm run dev
+```
+
+- Build for production:
+
+```bash
+npm run build
+```
+
+- Serve the built `dist` locally to sanity-check assets:
+
+```bash
+npx serve dist
+# or: npx http-server dist
+```
+
+Deployment
+- This project is configured to deploy to GitHub Pages. The Vite `base` is set to `/what-ai-when/` so assets resolve correctly when served from `https://<user>.github.io/what-ai-when/`.
+- A GitHub Actions workflow (`.github/workflows/deploy.yml`) builds the app and publishes `dist` to the `gh-pages` branch via `peaceiris/actions-gh-pages`.
+
+Client-side routing
+- If you use React Router (or another client-side router), set the router basename to `/what-ai-when` so internal routes work; e.g. <Router basename="/what-ai-when">.
+
+Troubleshooting
+- If pages show 404s for static assets, double-check `vite.config.js` contains `base: '/what-ai-when/'` and rebuild.
+- If Actions fails to publish, verify `GITHUB_TOKEN` permissions in repo Settings → Actions and that Pages is allowed to be published from Actions.
+
+If you'd like, I can also add a one-line notice in `README.md` with the exact publication timestamp and the workflow run link once the first deploy finishes.
 ## What AI, When?
 
 A lightweight static React site to help people choose the right AI tool for a given task. Users can select a persona, browse tool cards, and open detail pages describing model options, value, and use cases.
