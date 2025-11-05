@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="What AI, When? Find the right AI tool for your task." />
+    <title>What AI, When?</title>
+    <link rel="icon" href="/favicon.ico" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #0b0c10;
+        --panel: #121419;
+        --text: #eaf1ff;
+        --muted: #aab6d3;
+        --accent: #6aa6ff;
+        --card: #171a21;
+        --warn: #ffd166;
+      }
+      html, body, #root { height: 100%; margin: 0; }
+      body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: var(--bg); color: var(--text);
+      }
+      a { color: var(--accent); text-decoration: none; }
+      .container { max-width: 1080px; margin: 0 auto; padding: 24px; }
+      .header { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+      .brand { display: flex; align-items: center; gap: 10px; }
+      .brand-logo { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #6aa6ff, #b388ff); }
+      .brand-title { font-weight: 700; letter-spacing: 0.2px; }
+      .disclaimer { background: linear-gradient(180deg, rgba(255,209,102,0.1), rgba(255,209,102,0.06));
+        border: 1px solid rgba(255,209,102,0.35); color: var(--text); padding: 14px 16px; border-radius: 10px; margin: 18px 0; font-size: 0.95rem;
+      }
+      .footer { color: var(--muted); font-size: 0.9rem; margin-top: 40px; padding-top: 20px; border-top: 1px solid #1f2430; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+      .card { background: var(--card); border: 1px solid #202636; border-radius: 12px; padding: 16px; transition: transform 120ms ease, border-color 120ms ease; }
+      .card:hover { transform: translateY(-3px); border-color: #2a3854; }
+      .pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; background: #0f1420; border: 1px solid #24324c; border-radius: 32px; color: var(--muted); font-size: 0.9rem; }
+      .select { background: #0f1420; color: var(--text); border: 1px solid #24324c; padding: 10px 12px; border-radius: 10px; }
+      .muted { color: var(--muted); }
+      .btn { display: inline-block; background: #0f1420; color: var(--text); border: 1px solid #24324c; padding: 10px 14px; border-radius: 10px; }
+      .btn:hover { border-color: #2a3854; }
+      input[type="checkbox"] { 
+        appearance: none; 
+        -webkit-appearance: none;
+        width: 20px; 
+        height: 20px; 
+        border: 2px solid #24324c; 
+        border-radius: 4px; 
+        background: #0f1420; 
+        cursor: pointer; 
+        position: relative;
+        transition: all 120ms ease;
+        flex-shrink: 0;
+      }
+      input[type="checkbox"]:hover { border-color: #6aa6ff; }
+      input[type="checkbox"]:checked { 
+        background: linear-gradient(135deg, #6aa6ff, #b388ff); 
+        border-color: #6aa6ff;
+      }
+      input[type="checkbox"]:checked::after { 
+        content: '✓'; 
+        position: absolute; 
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+        color: #0b0c10; 
+        font-size: 14px; 
+        font-weight: bold;
+        line-height: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+  </html>
+
+
