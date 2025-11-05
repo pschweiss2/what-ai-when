@@ -1,15 +1,9 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function ToolCard({ tool, onCompareChange, isComparing }) {
-  React.useEffect(() => {
-    console.log(`[ToolCard ${tool.id}] Render - isComparing:`, isComparing, 'type:', typeof isComparing);
-  });
-
   const handleCheckboxChange = (e) => {
     e.stopPropagation();
     const newValue = !isComparing; // Toggle based on current prop, not DOM state
-    console.log(`[ToolCard ${tool.id}] Checkbox clicked - newValue:`, newValue, 'current isComparing:', isComparing);
     onCompareChange?.(tool.id, newValue);
   };
 

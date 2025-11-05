@@ -1,0 +1,236 @@
+[
+  {
+    "id": "openai-chatgpt",
+    "name": "ChatGPT / GPT-4o",
+    "vendor": "OpenAI",
+    "summary": "A leading multimodal conversational AI assistant for text, code, image, and voice interactions, offering advanced reasoning and file analysis capabilities.",
+    "tags": ["conversational-ai", "text-generation", "image-generation", "code-generation", "data-analysis", "free-tier", "api-available", "enterprise"],
+    "hasNewModel": true,
+    "personas": ["writer", "researcher", "developer", "student", "business", "creative"]
+  },
+  {
+    "id": "anthropic-claude",
+    "name": "Claude 3 / 3.5",
+    "vendor": "Anthropic",
+    "summary": "An enterprise-grade conversational AI, known for its strong performance in complex reasoning, long context windows, and focus on safety and constitutional AI.",
+    "tags": ["conversational-ai", "text-generation", "data-analysis", "research", "business", "free-tier", "api-available", "enterprise"],
+    "hasNewModel": true,
+    "personas": ["researcher", "developer", "business", "writer"]
+  },
+  {
+    "id": "google-gemini",
+    "name": "Google Gemini",
+    "vendor": "Google",
+    "summary": "Google's family of multimodal AI models and a conversational assistant deeply integrated with the Google ecosystem (Workspace, Search).",
+    "tags": ["conversational-ai", "text-generation", "image-generation", "data-analysis", "productivity", "free-tier", "api-available", "enterprise"],
+    "hasNewModel": true,
+    "personas": ["student", "business", "marketer", "developer", "researcher"]
+  },
+  {
+    "id": "perplexity-ai",
+    "name": "Perplexity AI",
+    "vendor": "Perplexity AI",
+    "summary": "An AI-powered search engine that provides direct answers and summaries, citing its sources for enhanced reliability and research value.",
+    "tags": ["search-engines", "research", "text-generation", "productivity", "free-tier", "api-available"],
+    "hasNewModel": false,
+    "personas": ["researcher", "student", "writer", "developer", "business"]
+  },
+  {
+    "id": "microsoft-copilot",
+    "name": "Microsoft Copilot",
+    "vendor": "Microsoft",
+    "summary": "An AI assistant integrated across Microsoft 365, Windows, and Bing, enhancing productivity for coding, document creation, and digital workflows.",
+    "tags": ["conversational-ai", "productivity", "code-generation", "text-generation", "business", "free-tier", "enterprise"],
+    "hasNewModel": false,
+    "personas": ["developer", "business", "writer", "marketer"]
+  },
+  {
+    "id": "github-copilot",
+    "name": "GitHub Copilot",
+    "vendor": "GitHub (Microsoft)",
+    "summary": "An AI pair programmer that provides code suggestions and completions in real-time, directly within major IDEs.",
+    "tags": ["code-generation", "developer-tools", "productivity", "api-available", "paid"],
+    "hasNewModel": false,
+    "personas": ["developer", "researcher"]
+  },
+  {
+    "id": "cursor-ide",
+    "name": "Cursor",
+    "vendor": "Cursor",
+    "summary": "An AI-powered code editor built on VS Code that excels at codebase-aware chat, code generation, and debugging for complex projects.",
+    "tags": ["code-generation", "developer-tools", "productivity", "open-source", "free-tier"],
+    "hasNewModel": false,
+    "personas": ["developer"]
+  },
+  {
+    "id": "midjourney",
+    "name": "Midjourney",
+    "vendor": "Midjourney, Inc.",
+    "summary": "A leading proprietary AI image generator known for producing highly aesthetic, artistic, and photorealistic imagery from text prompts via Discord.",
+    "tags": ["image-generation", "creative", "design-tools", "paid"],
+    "hasNewModel": false,
+    "personas": ["designer", "creative", "marketer"]
+  },
+  {
+    "id": "dall-e",
+    "name": "DALL-E 3",
+    "vendor": "OpenAI",
+    "summary": "An advanced image generation model integrated into ChatGPT and Copilot, specializing in generating accurate, instruction-following visuals.",
+    "tags": ["image-generation", "creative", "design-tools", "api-available", "paid"],
+    "hasNewModel": false,
+    "personas": ["designer", "marketer", "creative"]
+  },
+  {
+    "id": "stable-diffusion",
+    "name": "Stable Diffusion",
+    "vendor": "Stability AI",
+    "summary": "A popular open-source image generation model that allows for extensive customization, fine-tuning, and local execution for high-control visual creation.",
+    "tags": ["image-generation", "creative", "design-tools", "open-source", "developer-tools", "free-tier"],
+    "hasNewModel": false,
+    "personas": ["developer", "designer", "creative"]
+  },
+  {
+    "id": "runway-gen-2",
+    "name": "Runway Gen-2",
+    "vendor": "Runway",
+    "summary": "A leading AI tool for generating high-quality video clips from text, images, or existing video, offering cinematic controls and editing features.",
+    "tags": ["video-generation", "creative", "design-tools", "free-tier", "paid"],
+    "hasNewModel": false,
+    "personas": ["creative", "designer", "marketer"]
+  },
+  {
+    "id": "pika-labs",
+    "name": "Pika",
+    "vendor": "Pika Labs",
+    "summary": "A popular AI platform focused on generating and editing video clips, allowing users to quickly animate static images and modify existing videos via text prompts.",
+    "tags": ["video-generation", "creative", "design-tools", "free-tier"],
+    "hasNewModel": false,
+    "personas": ["creative", "designer", "marketer"]
+  },
+  {
+    "id": "elevenlabs",
+    "name": "ElevenLabs",
+    "vendor": "ElevenLabs",
+    "summary": "A state-of-the-art AI platform for realistic voice synthesis, offering text-to-speech, voice cloning, and dubbing in multiple languages for content creators.",
+    "tags": ["audio-generation", "productivity", "creative", "api-available", "free-tier", "business"],
+    "hasNewModel": false,
+    "personas": ["marketer", "creative", "business", "writer"]
+  },
+  {
+    "id": "suno-ai",
+    "name": "Suno",
+    "vendor": "Suno AI",
+    "summary": "An AI music generator that creates full, original songs with vocals and instrumentation from simple text descriptions or lyrics.",
+    "tags": ["audio-generation", "creative", "free-tier"],
+    "hasNewModel": false,
+    "personas": ["creative", "designer", "writer"]
+  },
+  {
+    "id": "notion-ai",
+    "name": "Notion AI",
+    "vendor": "Notion Labs",
+    "summary": "An AI assistant built into the all-in-one workspace, used for summarizing notes, drafting content, brainstorming, and automating tasks directly in documents.",
+    "tags": ["productivity", "text-generation", "business", "no-code", "paid"],
+    "hasNewModel": false,
+    "personas": ["writer", "business", "student", "researcher"]
+  },
+  {
+    "id": "grammarly-go",
+    "name": "GrammarlyGo",
+    "vendor": "Grammarly",
+    "summary": "An AI writing partner that goes beyond grammar correction to offer full generative text, tone adjustments, and response drafting across various applications.",
+    "tags": ["productivity", "text-generation", "business", "free-tier"],
+    "hasNewModel": false,
+    "personas": ["writer", "student", "business", "marketer"]
+  },
+  {
+    "id": "adobe-firefly",
+    "name": "Adobe Firefly",
+    "vendor": "Adobe",
+    "summary": "A family of generative AI models integrated into Adobe Creative Cloud products for text-to-image, text effects, and generative fill/expand in design workflows.",
+    "tags": ["image-generation", "design-tools", "creative", "paid", "enterprise"],
+    "hasNewModel": false,
+    "personas": ["designer", "creative", "marketer"]
+  },
+  {
+    "id": "canva-magic-studio",
+    "name": "Canva Magic Studio",
+    "vendor": "Canva",
+    "summary": "An integrated suite of AI design tools for image generation, text editing, and automated presentation creation within the user-friendly design platform.",
+    "tags": ["image-generation", "design-tools", "productivity", "no-code", "free-tier"],
+    "hasNewModel": false,
+    "personas": ["designer", "marketer", "student", "business", "creative"]
+  },
+  {
+    "id": "zapier-ai-agents",
+    "name": "Zapier AI Agents",
+    "vendor": "Zapier",
+    "summary": "AI agents that automate complex, multi-step workflows by connecting thousands of apps and performing tasks based on natural language instructions.",
+    "tags": ["no-code", "automation", "productivity", "business", "developer-tools", "paid"],
+    "hasNewModel": false,
+    "personas": ["business", "marketer", "developer"]
+  },
+  {
+    "id": "make-ai",
+    "name": "Make (formerly Integromat)",
+    "vendor": "Make",
+    "summary": "A visual platform for building, managing, and automating custom workflows and data transfers between applications, leveraging AI for task logic.",
+    "tags": ["no-code", "automation", "productivity", "business", "developer-tools", "free-tier"],
+    "hasNewModel": false,
+    "personas": ["business", "developer", "marketer"]
+  },
+  {
+    "id": "you-com",
+    "name": "You.com",
+    "vendor": "You.com",
+    "summary": "A generative AI search engine that offers summarized results, chat, and an integrated 'Write' mode for text generation and content creation.",
+    "tags": ["search-engines", "conversational-ai", "text-generation", "free-tier"],
+    "hasNewModel": false,
+    "personas": ["researcher", "student", "writer", "developer"]
+  },
+  {
+    "id": "jasper-ai",
+    "name": "Jasper",
+    "vendor": "Jasper AI",
+    "summary": "A generative AI platform primarily for marketing and business teams, focused on creating long-form content, campaign copy, and brand-consistent assets.",
+    "tags": ["text-generation", "productivity", "creative", "business", "paid"],
+    "hasNewModel": false,
+    "personas": ["marketer", "writer", "business", "creative"]
+  },
+  {
+    "id": "data-analyst-by-chatgpt",
+    "name": "ChatGPT Advanced Data Analysis",
+    "vendor": "OpenAI",
+    "summary": "A feature within ChatGPT (formerly Code Interpreter) that allows users to upload, analyze, clean, and visualize data using natural language prompts.",
+    "tags": ["data-analysis", "productivity", "research", "paid"],
+    "hasNewModel": false,
+    "personas": ["researcher", "business", "developer", "student"]
+  },
+  {
+    "id": "llama-3",
+    "name": "Llama 3",
+    "vendor": "Meta",
+    "summary": "Meta's powerful, open-source large language model available in multiple sizes, used by developers for a wide range of text and code generation applications.",
+    "tags": ["text-generation", "code-generation", "open-source", "developer-tools", "api-available", "free-tier"],
+    "hasNewModel": false,
+    "personas": ["developer", "researcher", "business"]
+  },
+  {
+    "id": "synthesia",
+    "name": "Synthesia",
+    "vendor": "Synthesia",
+    "summary": "A platform for creating professional-quality videos using AI avatars and text-to-speech, without needing cameras, studios, or actors.",
+    "tags": ["video-generation", "business", "productivity", "marketer", "paid"],
+    "hasNewModel": false,
+    "personas": ["marketer", "business", "creative"]
+  },
+  {
+    "id": "cohere-command",
+    "name": "Cohere Command",
+    "vendor": "Cohere",
+    "summary": "A family of large language models optimized for enterprise use, focusing on superior long-context tasks, RAG, and multi-lingual processing via API.",
+    "tags": ["text-generation", "research", "developer-tools", "api-available", "enterprise", "free-tier"],
+    "hasNewModel": false,
+    "personas": ["developer", "business", "researcher"]
+  }
+]

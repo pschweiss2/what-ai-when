@@ -21,27 +21,14 @@ export default function HomePage() {
   }, [personaId, query]);
 
   const handleCompareChange = React.useCallback((toolId, isSelected) => {
-    console.log(`[HomePage] handleCompareChange called - toolId:`, toolId, 'isSelected:', isSelected);
     setSelectedForComparison((prev) => {
-      console.log(`[HomePage] State update - prev:`, prev, 'prev.includes:', prev.includes(toolId));
-      let next;
       if (isSelected) {
-        next = prev.includes(toolId) ? prev : [...prev, toolId];
+        return prev.includes(toolId) ? prev : [...prev, toolId];
       } else {
-        next = prev.filter((id) => id !== toolId);
+        return prev.filter((id) => id !== toolId);
       }
-      console.log(`[HomePage] State update - next:`, next);
-      return next;
     });
   }, []);
-
-  React.useEffect(() => {
-    console.log(`[HomePage] Render - selectedForComparison:`, selectedForComparison);
-    filtered.forEach((tool) => {
-      const isIncluded = selectedForComparison.includes(tool.id);
-      console.log(`[HomePage] Tool ${tool.id} - isIncluded:`, isIncluded);
-    });
-  });
 
   const handleCompareClick = () => {
     const ids = selectedForComparison.join(',');
