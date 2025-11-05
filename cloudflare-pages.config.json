@@ -1,0 +1,13 @@
+{
+  "project": "what-ai-when",
+  "provider": "cloudflare-pages",
+  "branch": "main",
+  "build_command": "npm run build",
+  "build_output_directory": "dist",
+  "root": "/",
+  "node_version": "18",
+  "notes": "Connect this repository in the Cloudflare Pages dashboard and use the above build command and output directory. Cloudflare will build on push to the selected branch.",
+  "env": {
+    "RECOMMENDATION": "If you need environment variables (API keys, etc.) add them in the Pages project settings, not in this file."
+  }
+}
