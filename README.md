@@ -1,6 +1,6 @@
 # what-ai-when
 
-Live site: https://pschweiss2.github.io/what-ai-when/
+Live site: (deployed to Cloudflare Pages)
 
 Short notes
 - Run locally:
@@ -23,18 +23,29 @@ npx serve dist
 # or: npx http-server dist
 ```
 
-Deployment
-- This project is configured to deploy to GitHub Pages. The Vite `base` is set to `/what-ai-when/` so assets resolve correctly when served from `https://<user>.github.io/what-ai-when/`.
-- A GitHub Actions workflow (`.github/workflows/deploy.yml`) builds the app and publishes `dist` to the `gh-pages` branch via `peaceiris/actions-gh-pages`.
+Deployment (Cloudflare Pages)
+- This project is set up to deploy to Cloudflare Pages. Cloudflare Pages expects a root-based site by default, so `vite.config.js` uses `base: '/'`.
+- Connect your GitHub repository to Cloudflare Pages, set the Build command to:
+
+```text
+npm run build
+```
+
+and the "Build output directory" to:
+
+```text
+dist
+```
+
+- Cloudflare will automatically build and publish on push. If you prefer a custom domain, configure it in the Pages dashboard.
 
 Client-side routing
-- If you use React Router (or another client-side router), set the router basename to `/what-ai-when` so internal routes work; e.g. <Router basename="/what-ai-when">.
+- If you use React Router, set the router basename to `/` (or to your custom path if you host under a subpath). Example: <Router basename="/">.
 
 Troubleshooting
-- If pages show 404s for static assets, double-check `vite.config.js` contains `base: '/what-ai-when/'` and rebuild.
-- If Actions fails to publish, verify `GITHUB_TOKEN` permissions in repo Settings → Actions and that Pages is allowed to be published from Actions.
+- If static assets 404, confirm `vite.config.js` contains `base: '/'` (or the correct subpath), rebuild, and redeploy.
 
-If you'd like, I can also add a one-line notice in `README.md` with the exact publication timestamp and the workflow run link once the first deploy finishes.
+If you'd like, I can add a short Cloudflare Pages deployment guide or an example `pages` configuration file.
 ## What AI, When?
 
 A lightweight static React site to help people choose the right AI tool for a given task. Users can select a persona, browse tool cards, and open detail pages describing model options, value, and use cases.
