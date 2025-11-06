@@ -10,6 +10,16 @@ export default function ToolCard({ tool, onCompareChange, isComparing }) {
   return (
     <div className="card" style={{ position: 'relative' }}>
       <div 
+        style={{ position: 'absolute', bottom: 12, left: 12, zIndex: 10 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {tool.hasFreeTier && (
+          <span className="pill" style={{ background: '#10b981', color: '#fff', fontSize: '0.7rem', fontWeight: 600, padding: '4px 8px' }}>
+            Free Tier
+          </span>
+        )}
+      </div>
+      <div 
         style={{ position: 'absolute', bottom: 12, right: 12, zIndex: 10 }}
         onClick={(e) => e.stopPropagation()}
         data-checkbox-container

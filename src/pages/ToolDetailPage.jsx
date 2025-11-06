@@ -20,7 +20,14 @@ export default function ToolDetailPage() {
       <Link className="btn" to="/" style={{ marginBottom: 16, display: 'inline-block' }}>← Back</Link>
       <div className="card" style={{ padding: 24 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
-          <h2 style={{ margin: 0 }}>{tool.name}</h2>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <h2 style={{ margin: 0 }}>{tool.name}</h2>
+            {tool.hasFreeTier && (
+              <span className="pill" style={{ background: '#10b981', color: '#fff', fontSize: '0.75rem', fontWeight: 600 }}>
+                Free Tier
+              </span>
+            )}
+          </div>
           <span className="pill">{tool.vendor}</span>
         </div>
         <p className="muted" style={{ marginTop: 10 }}>{tool.description || tool.summary}</p>

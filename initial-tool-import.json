@@ -99,13 +99,13 @@
     "personas": ["creative", "designer", "marketer"]
   },
   {
-    "id": "pika-labs",
-    "name": "Pika",
-    "vendor": "Pika Labs",
-    "summary": "A popular AI platform focused on generating and editing video clips, allowing users to quickly animate static images and modify existing videos via text prompts.",
-    "tags": ["video-generation", "creative", "design-tools", "free-tier"],
-    "hasNewModel": false,
-    "personas": ["creative", "designer", "marketer"]
+    id: "pika-labs",
+    name: "Pika",
+    vendor: "Pika Labs",
+    summary: "A popular AI platform focused on generating and editing video clips, allowing users to quickly animate static images and modify existing videos via text prompts.",
+    tags: ["video-generation", "creative", "design-tools", "free-tier"],
+    hasNewModel: false,
+    personas: ["creative", "designer", "marketer"]
   },
   {
     "id": "elevenlabs",
@@ -189,13 +189,13 @@
     "personas": ["researcher", "student", "writer", "developer"]
   },
   {
-    "id": "jasper-ai",
-    "name": "Jasper",
-    "vendor": "Jasper AI",
-    "summary": "A generative AI platform primarily for marketing and business teams, focused on creating long-form content, campaign copy, and brand-consistent assets.",
-    "tags": ["text-generation", "productivity", "creative", "business", "paid"],
-    "hasNewModel": false,
-    "personas": ["marketer", "writer", "business", "creative"]
+    id: "jasper-ai",
+    name: "Jasper",
+    vendor: "Jasper AI",
+    summary: "A generative AI platform primarily for marketing and business teams, focused on creating long-form content, campaign copy, and brand-consistent assets.",
+    tags: ["text-generation", "productivity", "creative", "business", "paid"],
+    hasNewModel: false,
+    personas: ["marketer", "writer", "business", "creative"]
   },
   {
     "id": "data-analyst-by-chatgpt",
