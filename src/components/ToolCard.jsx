@@ -1,5 +1,15 @@
 import { Link } from 'react-router-dom';
 
+// Map country names to flag emojis
+const countryFlags = {
+  'USA': '🇺🇸',
+  'UK': '🇬🇧',
+  'France': '🇫🇷',
+  'China': '🇨🇳',
+  'Australia': '🇦🇺',
+  'Denmark': '🇩🇰',
+};
+
 export default function ToolCard({ tool, onCompareChange, isComparing }) {
   const handleCheckboxChange = (e) => {
     e.stopPropagation();
@@ -9,16 +19,7 @@ export default function ToolCard({ tool, onCompareChange, isComparing }) {
 
   return (
     <div className="card" style={{ position: 'relative' }}>
-      <div 
-        style={{ position: 'absolute', bottom: 12, left: 12, zIndex: 10 }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {tool.hasFreeTier && (
-          <span className="pill" style={{ background: '#10b981', color: '#fff', fontSize: '0.7rem', fontWeight: 600, padding: '4px 8px' }}>
-            Free Tier
-          </span>
-        )}
-      </div>
+      {/* Checkbox stays absolutely positioned */}
       <div 
         style={{ position: 'absolute', bottom: 12, right: 12, zIndex: 10 }}
         onClick={(e) => e.stopPropagation()}
@@ -51,7 +52,12 @@ export default function ToolCard({ tool, onCompareChange, isComparing }) {
               </span>
             )}
           </h3>
-          <span className="pill">{tool.vendor}</span>
+          <span className="pill" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            {tool.country && countryFlags[tool.country] && (
+              <span style={{ fontSize: '1.1rem' }}>{countryFlags[tool.country]}</span>
+            )}
+            {tool.vendor}
+          </span>
         </div>
         <p className="muted" style={{ marginTop: 8 }}>{tool.summary}</p>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 10 }}>
@@ -59,6 +65,13 @@ export default function ToolCard({ tool, onCompareChange, isComparing }) {
             <span key={t} className="pill" style={{ fontSize: '0.8rem' }}>{t}</span>
           ))}
         </div>
+        {tool.hasFreeTier && (
+          <div style={{ marginTop: 14 }}>
+            <span className="pill" style={{ background: '#10b981', color: '#fff', fontSize: '0.7rem', fontWeight: 600, padding: '4px 8px', display: 'inline-block' }}>
+              Free Tier
+            </span>
+          </div>
+        )}
       </Link>
     </div>
   );

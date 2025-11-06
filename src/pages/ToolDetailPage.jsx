@@ -2,6 +2,16 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { tools } from '../data/tools.js';
 
+// Map country names to flag emojis
+const countryFlags = {
+  'USA': '🇺🇸',
+  'UK': '🇬🇧',
+  'France': '🇫🇷',
+  'China': '🇨🇳',
+  'Australia': '🇦🇺',
+  'Denmark': '🇩🇰',
+};
+
 export default function ToolDetailPage() {
   const { toolId } = useParams();
   const tool = tools.find((t) => t.id === toolId);
@@ -28,7 +38,12 @@ export default function ToolDetailPage() {
               </span>
             )}
           </div>
-          <span className="pill">{tool.vendor}</span>
+          <span className="pill" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            {tool.country && countryFlags[tool.country] && (
+              <span style={{ fontSize: '1.2rem' }}>{countryFlags[tool.country]}</span>
+            )}
+            {tool.vendor}
+          </span>
         </div>
         <p className="muted" style={{ marginTop: 10 }}>{tool.description || tool.summary}</p>
 

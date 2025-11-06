@@ -2,23 +2,37 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import PersonaSelector from '../components/PersonaSelector.jsx';
 import ToolCard from '../components/ToolCard.jsx';
-import { personas, tools } from '../data/tools.js';
+import { personas, tools, sortByCountry, sortByVendor, sortByName, sortByFreeTier } from '../data/tools.js';
 
 export default function HomePage() {
   const navigate = useNavigate();
   const [personaId, setPersonaId] = React.useState(personas[0]?.id ?? 'all');
   const [query, setQuery] = React.useState('');
   const [selectedForComparison, setSelectedForComparison] = React.useState([]);
+  const [sortKey, setSortKey] = React.useState('default');
 
   const filtered = React.useMemo(() => {
-    const base = personaId === 'all' ? tools : tools.filter((t) => !t.personas || t.personas.includes(personaId));
-    if (!query.trim()) return base;
-    const q = query.toLowerCase();
-    return base.filter((t) => {
-      const hay = [t.name, t.vendor, t.summary, ...(t.tags || [])].join(' ').toLowerCase();
-      return hay.includes(q);
-    });
-  }, [personaId, query]);
+    let base = personaId === 'all' ? tools : tools.filter((t) => !t.personas || t.personas.includes(personaId));
+    if (query.trim()) {
+      const q = query.toLowerCase();
+      base = base.filter((t) => {
+        const hay = [t.name, t.vendor, t.summary, ...(t.tags || [])].join(' ').toLowerCase();
+        return hay.includes(q);
+      });
+    }
+    switch (sortKey) {
+      case 'country':
+        return sortByCountry(base);
+      case 'vendor':
+        return sortByVendor(base);
+      case 'name':
+        return sortByName(base);
+      case 'freeTier':
+        return sortByFreeTier(base);
+      default:
+        return base;
+    }
+  }, [personaId, query, sortKey]);
 
   const handleCompareChange = React.useCallback((toolId, isSelected) => {
     setSelectedForComparison((prev) => {
@@ -58,9 +72,32 @@ export default function HomePage() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
+        <select
+          aria-label="Sort tools"
+          className="select"
+          style={{ minWidth: 160 }}
+          value={sortKey}
+          onChange={e => setSortKey(e.target.value)}
+        >
+          <option value="default">Sort: Default</option>
+          <option value="country">Sort by Country A-Z</option>
+          <option value="vendor">Sort by Vendor A-Z </option>
+          <option value="name">Sort by Name A-Z </option>
+          <option value="freeTier">Sort by Free Tier</option>
+        </select>
       </div>
 
-      <section className="grid" aria-label="AI tools">
+      <section
+        className="grid"
+        aria-label="AI tools"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '24px',
+          alignItems: 'stretch',
+          marginBottom: 32,
+        }}
+      >
         {filtered.map((tool) => (
           <ToolCard 
             key={tool.id} 
