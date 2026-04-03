@@ -7,6 +7,7 @@ import ComparisonPage from './pages/ComparisonPage.jsx';
 import Fundamentals from './pages/Fundamentals.jsx';
 import AdminPage from './pages/AdminPage.jsx';
 import Disclaimer from './components/Disclaimer.jsx';
+import NeuralNetworkBackground from './components/NeuralNetworkBackground.jsx';
 import { FEEDBACK_FORM_URL } from './config.js';
 
 function NavLink({ to, icon: Icon, children }) {
@@ -30,9 +31,12 @@ function NavLink({ to, icon: Icon, children }) {
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-bg">
+    <div className="min-h-screen bg-bg relative">
+      {/* Animated Neural Network Background */}
+      <NeuralNetworkBackground />
+
       {/* Header */}
-      <header className="border-b border-border sticky top-0 z-50 bg-bg/80 backdrop-blur-xl">
+      <header className="border-b border-border sticky top-0 z-50 bg-bg/80 backdrop-blur-xl relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
@@ -72,7 +76,7 @@ export default function App() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         <Disclaimer />
         
         <Routes>
@@ -85,7 +89,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border mt-16">
+      <footer className="border-t border-border mt-16 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-muted text-sm">
