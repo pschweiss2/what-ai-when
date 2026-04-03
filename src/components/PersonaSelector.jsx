@@ -10,9 +10,22 @@ export default function PersonaSelector({ personas, value, onChange }) {
           className="bg-transparent text-text font-medium focus:outline-none cursor-pointer appearance-none pr-6"
           value={value} 
           onChange={(e) => onChange(e.target.value)}
+          style={{
+            // Force dark background for dropdown options
+            backgroundColor: '#121419'
+          }}
         >
           {personas.map((p) => (
-            <option key={p.id} value={p.id}>{p.name}</option>
+            <option 
+              key={p.id} 
+              value={p.id}
+              style={{
+                backgroundColor: '#121419',
+                color: '#eaf1ff'
+              }}
+            >
+              {p.name}
+            </option>
           ))}
         </select>
       </div>
