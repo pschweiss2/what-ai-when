@@ -1,77 +1,99 @@
 import { Link } from 'react-router-dom';
+import { Sparkles } from 'lucide-react';
+import { VendorIcon, CountryFlag, getIconForTag } from './Icons.jsx';
 
-// Map country names to flag emojis
-const countryFlags = {
-  'USA': '🇺🇸',
-  'UK': '🇬🇧',
-  'France': '🇫🇷',
-  'China': '🇨🇳',
-  'Australia': '🇦🇺',
-  'Denmark': '🇩🇰',
-};
-
-export default function ToolCard({ tool, onCompareChange, isComparing }) {
+export default function ToolCard({ tool, onCompareChange, isComparing, index = 0 }) {
   const handleCheckboxChange = (e) => {
     e.stopPropagation();
-    const newValue = !isComparing; // Toggle based on current prop, not DOM state
+    const newValue = !isComparing;
     onCompareChange?.(tool.id, newValue);
   };
 
+  const staggerClass = index < 6 ? `stagger-${index + 1}` : '';
+
   return (
-    <div className="card" style={{ position: 'relative' }}>
-      {/* Checkbox stays absolutely positioned */}
+    <div className={`glass-card p-5 relative group opacity-0 animate-slide-up ${staggerClass}`}>
+      {/* Compare Checkbox */}
       <div 
-        style={{ position: 'absolute', bottom: 12, right: 12, zIndex: 10 }}
+        className="absolute bottom-4 right-4 z-10"
         onClick={(e) => e.stopPropagation()}
         data-checkbox-container
       >
-        <input
-          type="checkbox"
-          checked={Boolean(isComparing)}
-          onChange={handleCheckboxChange}
+        <button
+          onClick={handleCheckboxChange}
+          className={`w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all duration-200 ${
+            isComparing 
+              ? 'bg-gradient-to-r from-accent to-accent-secondary border-accent' 
+              : 'bg-panel border-border hover:border-accent/50'
+          }`}
           aria-label={`Compare ${tool.name}`}
-        />
+        >
+          {isComparing && (
+            <svg className="w-4 h-4 text-bg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          )}
+        </button>
       </div>
+
       <Link 
         to={`/tool/${tool.id}`} 
-        aria-label={`${tool.name} details`} 
-        style={{ textDecoration: 'none', color: 'inherit', display: 'block', paddingBottom: 8 }}
+        aria-label={`${tool.name} details`}
+        className="block pb-8"
         onClick={(e) => {
-          // Don't navigate if clicking the checkbox area
           if (e.target.closest('[data-checkbox-container]')) {
             e.preventDefault();
           }
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
-          <h3 style={{ margin: 0, display: 'flex', alignItems: 'center', gap: 8 }}>
-            {tool.name}
-            {tool.hasNewModel && (
-              <span className="pill" style={{ background: 'linear-gradient(135deg, #6aa6ff, #b388ff)', color: '#0b0c10', fontSize: '0.75rem', fontWeight: 600 }}>
-                New Model
-              </span>
-            )}
-          </h3>
-          <span className="pill" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-            {tool.country && countryFlags[tool.country] && (
-              <span style={{ fontSize: '1.1rem' }}>{countryFlags[tool.country]}</span>
-            )}
-            {tool.vendor}
-          </span>
-        </div>
-        <p className="muted" style={{ marginTop: 8 }}>{tool.summary}</p>
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 10 }}>
-          {tool.tags?.slice(0, 4).map((t) => (
-            <span key={t} className="pill" style={{ fontSize: '0.8rem' }}>{t}</span>
-          ))}
-        </div>
-        {tool.hasFreeTier && (
-          <div style={{ marginTop: 14 }}>
-            <span className="pill" style={{ background: '#10b981', color: '#fff', fontSize: '0.7rem', fontWeight: 600, padding: '4px 8px', display: 'inline-block' }}>
-              Free Tier
-            </span>
+        {/* Header */}
+        <div className="flex items-start justify-between mb-3">
+          <div className="flex items-center gap-3">
+            <VendorIcon vendor={tool.vendor} />
+            <h3 className="text-lg font-semibold text-text">
+              {tool.name}
+            </h3>
           </div>
-        )}
+          
+          {tool.hasNewModel && (
+            <span className="pill-new flex items-center gap-1.5">
+              <Sparkles className="w-3 h-3" />
+              New
+            </span>
+          )}
+        </div>
+
+        {/* Vendor & Country */}
+        <div className="flex items-center gap-2 mb-3">
+          <span className="pill text-xs">
+            <CountryFlag country={tool.country} className="text-sm" />
+            <span className="ml-1">{tool.vendor}</span>
+          </span>
+          {tool.hasFreeTier && (
+            <span className="pill-free">Free</span>
+          )}
+        </div>
+
+        {/* Summary */}
+        <p className="text-muted text-sm leading-relaxed mb-4 line-clamp-2">
+          {tool.summary}
+        </p>
+
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2">
+          {tool.tags?.slice(0, 4).map((tag) => {
+            const Icon = getIconForTag(tag);
+            return (
+              <span key={tag} className="tag flex items-center gap-1">
+                <Icon className="w-3 h-3" />
+                {tag}
+              </span>
+            );
+          })}
+          {tool.tags?.length > 4 && (
+            <span className="tag">+{tool.tags.length - 4}</span>
+          )}
+        </div>
       </Link>
     </div>
   );

@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { tools } from '../data/tools.js';
+import { ArrowLeft, Sparkles, Building2, Tag, FileText, Lightbulb, ExternalLink } from 'lucide-react';
+import { tools } from '../data/index.js';
+import { CountryFlag } from '../components/Icons.jsx';
 
 export default function ComparisonPage() {
   const [searchParams] = useSearchParams();
@@ -9,116 +11,186 @@ export default function ComparisonPage() {
 
   if (selectedTools.length === 0) {
     return (
-      <main>
-        <p>No tools selected for comparison.</p>
-        <Link className="btn" to="/">Back to Home</Link>
+      <main className="animate-fade-in">
+        <div className="glass-card p-8 text-center">
+          <p className="text-muted text-lg mb-4">No tools selected for comparison.</p>
+          <Link className="btn" to="/">
+            <ArrowLeft className="w-4 h-4" />
+            Back to Home
+          </Link>
+        </div>
       </main>
     );
   }
 
-  const allTags = new Set();
-  selectedTools.forEach((t) => {
-    t.tags?.forEach((tag) => allTags.add(tag));
-  });
-
   return (
-    <main>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
-        <h2 style={{ margin: 0 }}>Tool Comparison</h2>
-        <Link className="btn" to="/">← Back</Link>
+    <main className="animate-fade-in">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+        <div>
+          <h1 className="text-2xl font-bold gradient-text">Tool Comparison</h1>
+          <p className="text-muted text-sm mt-1">Comparing {selectedTools.length} AI tools</p>
+        </div>
+        <Link className="btn" to="/">
+          <ArrowLeft className="w-4 h-4" />
+          Back
+        </Link>
       </div>
 
-      <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', background: 'var(--card)', borderRadius: 12, overflow: 'hidden' }}>
-          <thead>
-            <tr style={{ background: 'var(--panel)' }}>
-              <th style={{ padding: 16, textAlign: 'left', borderBottom: '2px solid #202636' }}>Feature</th>
-              {selectedTools.map((tool) => (
-                <th key={tool.id} style={{ padding: 16, textAlign: 'left', borderBottom: '2px solid #202636', minWidth: 200 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <div>
-                      <div style={{ fontWeight: 600 }}>{tool.name}</div>
-                      <div className="muted" style={{ fontSize: '0.9rem' }}>{tool.vendor}</div>
+      {/* Comparison Table */}
+      <div className="overflow-x-auto -mx-4 px-4">
+        <div className="glass-card min-w-[600px] overflow-hidden">
+          <table className="w-full">
+            <thead>
+              <tr className="bg-panel border-b border-border">
+                <th className="text-left p-4 font-semibold text-text sticky left-0 bg-panel z-10">Feature</th>
+                {selectedTools.map((tool) => (
+                  <th key={tool.id} className="text-left p-4 min-w-[220px]">
+                    <div className="flex items-center gap-2">
+                      <span className="font-semibold text-text">{tool.name}</span>
+                      {tool.hasNewModel && (
+                        <span className="pill-new text-xs flex items-center gap-1">
+                          <Sparkles className="w-3 h-3" />
+                          New
+                        </span>
+                      )}
                     </div>
-                    {tool.hasNewModel && (
-                      <span className="pill" style={{ background: 'linear-gradient(135deg, #6aa6ff, #b388ff)', color: '#0b0c10', fontSize: '0.7rem', fontWeight: 600 }}>
-                        New
-                      </span>
+                    <div className="text-xs text-muted mt-1 flex items-center gap-1">
+                      <Building2 className="w-3 h-3" />
+                      {tool.vendor}
+                    </div>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {/* Summary Row */}
+              <tr className="border-b border-border">
+                <td className="p-4 font-medium text-text sticky left-0 bg-card z-10">
+                  <div className="flex items-center gap-2">
+                    <FileText className="w-4 h-4 text-accent" />
+                    Summary
+                  </div>
+                </td>
+                {selectedTools.map((tool) => (
+                  <td key={tool.id} className="p-4 align-top">
+                    <p className="text-sm text-muted leading-relaxed">{tool.summary}</p>
+                  </td>
+                ))}
+              </tr>
+
+              {/* Free Tier Row */}
+              <tr className="border-b border-border">
+                <td className="p-4 font-medium text-text sticky left-0 bg-card z-10">
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-success" />
+                    Free Tier
+                  </div>
+                </td>
+                {selectedTools.map((tool) => (
+                  <td key={tool.id} className="p-4">
+                    {tool.hasFreeTier ? (
+                      <span className="pill-free text-xs">Available</span>
+                    ) : (
+                      <span className="text-muted text-sm">—</span>
                     )}
-                  </div>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style={{ padding: 16, borderBottom: '1px solid #202636', fontWeight: 600 }}>Summary</td>
-              {selectedTools.map((tool) => (
-                <td key={tool.id} style={{ padding: 16, borderBottom: '1px solid #202636' }}>
-                  <p className="muted" style={{ margin: 0 }}>{tool.summary}</p>
-                </td>
-              ))}
-            </tr>
-            <tr>
-              <td style={{ padding: 16, borderBottom: '1px solid #202636', fontWeight: 600 }}>Tags</td>
-              {selectedTools.map((tool) => (
-                <td key={tool.id} style={{ padding: 16, borderBottom: '1px solid #202636' }}>
-                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                    {tool.tags?.map((tag) => (
-                      <span key={tag} className="pill" style={{ fontSize: '0.8rem' }}>{tag}</span>
-                    ))}
-                  </div>
-                </td>
-              ))}
-            </tr>
-            <tr>
-              <td style={{ padding: 16, borderBottom: '1px solid #202636', fontWeight: 600 }}>Models</td>
-              {selectedTools.map((tool) => (
-                <td key={tool.id} style={{ padding: 16, borderBottom: '1px solid #202636' }}>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                    {tool.models?.map((model) => (
-                      <div key={model.id}>
-                        <div style={{ fontWeight: 600, marginBottom: 4 }}>{model.name}</div>
-                        <div className="muted" style={{ fontSize: '0.9rem', marginBottom: 4 }}>{model.value}</div>
-                        {model.useCases?.length > 0 && (
-                          <ul style={{ margin: 0, paddingLeft: 20, fontSize: '0.9rem' }}>
-                            {model.useCases.slice(0, 3).map((uc, i) => (
-                              <li key={i} className="muted">{uc}</li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                    ))}
+                  </td>
+                ))}
+              </tr>
+
+              {/* Country Row */}
+              <tr className="border-b border-border">
+                <td className="p-4 font-medium text-text sticky left-0 bg-card z-10">Origin</td>
+                {selectedTools.map((tool) => (
+                  <td key={tool.id} className="p-4">
+                    <div className="flex items-center gap-2">
+                      <CountryFlag country={tool.country} />
+                      <span className="text-sm text-muted">{tool.country}</span>
+                    </div>
+                  </td>
+                ))}
+              </tr>
+
+              {/* Tags Row */}
+              <tr className="border-b border-border">
+                <td className="p-4 font-medium text-text sticky left-0 bg-card z-10">
+                  <div className="flex items-center gap-2">
+                    <Tag className="w-4 h-4 text-accent-secondary" />
+                    Tags
                   </div>
                 </td>
-              ))}
-            </tr>
-            <tr>
-              <td style={{ padding: 16, borderBottom: '1px solid #202636', fontWeight: 600 }}>Notes</td>
-              {selectedTools.map((tool) => (
-                <td key={tool.id} style={{ padding: 16, borderBottom: '1px solid #202636' }}>
-                  {tool.notes?.length > 0 ? (
-                    <ul style={{ margin: 0, paddingLeft: 20 }}>
-                      {tool.notes.map((note, i) => (
-                        <li key={i} className="muted">{note}</li>
+                {selectedTools.map((tool) => (
+                  <td key={tool.id} className="p-4 align-top">
+                    <div className="flex flex-wrap gap-1">
+                      {tool.tags?.map((tag) => (
+                        <span key={tag} className="tag text-xs">{tag}</span>
                       ))}
-                    </ul>
-                  ) : (
-                    <span className="muted">—</span>
-                  )}
+                    </div>
+                  </td>
+                ))}
+              </tr>
+
+              {/* Models Row */}
+              <tr className="border-b border-border">
+                <td className="p-4 font-medium text-text sticky left-0 bg-card z-10 align-top">
+                  <div className="flex items-center gap-2">
+                    <Lightbulb className="w-4 h-4 text-warn" />
+                    Models
+                  </div>
                 </td>
-              ))}
-            </tr>
-            <tr>
-              <td style={{ padding: 16, fontWeight: 600 }}>Learn More</td>
-              {selectedTools.map((tool) => (
-                <td key={tool.id} style={{ padding: 16 }}>
-                  <Link className="btn" to={`/tool/${tool.id}`} style={{ display: 'inline-block' }}>View Details</Link>
-                </td>
-              ))}
-            </tr>
-          </tbody>
-        </table>
+                {selectedTools.map((tool) => (
+                  <td key={tool.id} className="p-4 align-top">
+                    <div className="space-y-3">
+                      {tool.models?.map((model) => (
+                        <div key={model.id} className="border-l-2 border-accent/30 pl-3">
+                          <p className="font-medium text-sm text-text">{model.name}</p>
+                          <p className="text-xs text-muted line-clamp-2">{model.value}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </td>
+                ))}
+              </tr>
+
+              {/* Notes Row */}
+              <tr className="border-b border-border">
+                <td className="p-4 font-medium text-text sticky left-0 bg-card z-10 align-top">Notes</td>
+                {selectedTools.map((tool) => (
+                  <td key={tool.id} className="p-4 align-top">
+                    {tool.notes?.length > 0 ? (
+                      <ul className="space-y-2">
+                        {tool.notes.slice(0, 3).map((note, i) => (
+                          <li key={i} className="text-xs text-muted flex items-start gap-1.5">
+                            <span className="text-warn">•</span>
+                            <span className="line-clamp-2">{note}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <span className="text-muted text-sm">—</span>
+                    )}
+                  </td>
+                ))}
+              </tr>
+
+              {/* Actions Row */}
+              <tr>
+                <td className="p-4 font-medium text-text sticky left-0 bg-card z-10">Details</td>
+                {selectedTools.map((tool) => (
+                  <td key={tool.id} className="p-4">
+                    <Link 
+                      to={`/tool/${tool.id}`} 
+                      className="btn text-sm inline-flex"
+                    >
+                      View Full Details
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </Link>
+                  </td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </main>
   );
