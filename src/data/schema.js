@@ -13,14 +13,17 @@ export const ToolSchema = z.object({
   vendor: z.string(),
   country: z.string().optional(),
   summary: z.string(),
-  description: z.string(),
+  description: z.string().optional(),
   tags: z.array(z.string()),
   personas: z.array(z.string()),
   hasNewModel: z.boolean().default(false),
   hasFreeTier: z.boolean().default(false),
   models: z.array(ModelSchema).optional(),
   notes: z.array(z.string()).optional(),
-});
+}).transform(tool => ({
+  ...tool,
+  description: tool.description || tool.summary,
+}));
 
 export const PersonaSchema = z.object({
   id: z.string(),
